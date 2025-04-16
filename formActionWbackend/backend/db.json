@@ -1,0 +1,32 @@
+{
+  "opinions": [
+    {
+      "id": 1734687859955,
+      "votes": 2,
+      "userName": "Raphael Adaba",
+      "title": "React",
+      "body": "React is a state based course"
+    },
+    {
+      "id": 1734600953971,
+      "votes": 0,
+      "userName": "Raphael",
+      "title": "Football is a great sport",
+      "body": "I really enjoy pllaying the sport"
+    },
+    {
+      "id": 1,
+      "userName": "Maximilian Schwarzmüller",
+      "title": "Do yourself a favor and learn React!",
+      "body": "React is an amazing JavaScript library!\n\nDespite all it's shortcomings.",
+      "votes": 0
+    },
+    {
+      "id": 2,
+      "userName": "Maximilian Schwarzmüller",
+      "title": "React has more depth than you might first think!",
+      "body": "React is a great library to learn, but it's not just about the basics. Dive deeper!\nFor example with this course!",
+      "votes": 0
+    }
+  ]
+}

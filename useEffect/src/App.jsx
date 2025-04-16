@@ -33,7 +33,7 @@ function App() {
   function handleStartRemovePlace(id) {
     setModalIsOpen(true);
     selectedPlace.current = id;
-  }
+  } 
 
   function handleStopRemovePlace() {
     setModalIsOpen(false);

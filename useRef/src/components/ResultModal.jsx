@@ -8,9 +8,9 @@ const ResultModal = forwardRef(function ResultModal({ targetTime, remainingTime,
     const formattedRemainingTime = (remainingTime / 1000).toFixed(2); //"to.fixed(2)" will convert to 2 decimal places
     const score = Math.round((1 - remainingTime / (targetTime * 1000)) * 100);
 
-    useImperativeHandle(ref, () => { //exposes this method or function returned to other components
+    useImperativeHandle(ref, () => { // In short we're passing ref to ref ( maybe call ref chaining ? ) 
         return {
-            open() {
+            open() { //exposes this method or function returned to other components
                 dialog.current.showModal()
             }
         };
@@ -55,5 +55,14 @@ export default ResultModal;
  * 
  * onClose={onReset} //when esc key is pressed, the dialog element allows the dialog box to close but 
  * it won't reset the component or app...To ensure that the dialog resets when Esc key is pressed, we have to add the reset function to onClose
+ * 
+ * 
+ * UPDATED EXPLANATION ON USEIMPE...
+ * //check word doc for more
+ * The original dialog ref in the TimerChallenge component no longer binds to the <dialog> HTML element in the ResultModal component. 
+ * It can only access and call the open() method, but not the HTML element itself.
+ * This means that the ref can no longer use element-specific functions, it can only call methods defined in useImperativeHandle
+ * 
+ * 
 
  */

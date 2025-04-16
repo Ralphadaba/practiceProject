@@ -5,7 +5,7 @@ import { CartContext } from "../store/Shopping-cart-context.jsx";
 export default function Product({id, image, title, price, description }) {
   const { addItemToCart } = useContext(CartContext);
   
-  return (
+  return ( 
     <article className="product">
       <img src={image} alt={title} />
       <div className="product-content">

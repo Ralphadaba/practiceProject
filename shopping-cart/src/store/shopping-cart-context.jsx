@@ -6,7 +6,7 @@ import { DUMMY_PRODUCTS } from "../dummy-products.js";
 export const CartContext = createContext({ //Setting these default values just help with auto-completion. Makes it faster to code as a developer
     items: [],
     addItemToCart: () => { },
-    updateItemQuantity: () => { },
+    updateItemQuantity: () => { }, 
 });
 
 function shoppingCartReducer(state, action) { 
@@ -73,16 +73,16 @@ function shoppingCartReducer(state, action) {
 
 export default function CartContextProvider({ children }) {
     const [shoppingCartState, shoppingCartDispatch] = useReducer( //we're using the sCdispatch to set the values (identifier and arguements) to update the state
-        shoppingCartReducer,   //we're connecting the function to update the useReducer state
+        shoppingCartReducer,   //check below //we're connecting the function to update the useReducer state
         {
             items: [],  // initial value for the state
         }
     );
 
     function handleAddItemToCart(id) {
-        shoppingCartDispatch({
+        shoppingCartDispatch({  //Sends an action object to shoppingCartReducer so that the state can be updated. 
             type: 'ADD_ITEM', //with type, we will be able to identify the action
-            payload: id
+            payload: id     //payload is the data we need to update state like the props
         });
     }
 
@@ -90,7 +90,7 @@ export default function CartContextProvider({ children }) {
         // setShoppingCart((prevShoppingCart) => { });
         shoppingCartDispatch({
             type: 'UPDATE_ITEM',
-            payload: {
+            payload: {    //payload is the data we need to update state like the props
                 productId,  //productId: productId,
                 amount     //amount: amount    (JS syntax)
             }
@@ -104,7 +104,8 @@ export default function CartContextProvider({ children }) {
         updateItemQuantity: handleUpdateCartItemQuantity,
     };
 
-    return <CartContext.Provider value={ctxValue}>
+    //with react 19 and higher, you could just use <CartContext></CartContext> without the provider
+    return <CartContext.Provider value={ctxValue}>  
         {children}
     </CartContext.Provider>
 }
@@ -126,11 +127,11 @@ export default function CartContextProvider({ children }) {
  * 
  *  const [shoppingCart, setShoppingCart] = useState({
         items: [],
-    });
+    }); 
 
     function handleAddItemToCart(id) {
-        setShoppingCart((prevShoppingCart) => {
-            const updatedItems = [...prevShoppingCart.items];
+        setShoppingCart((prevShoppingCart) => {  //prevS... ensures we're working with the most up-to-date version of state
+            const updatedItems = [...prevShoppingCart.items];    // we used const here and not let cause You are updating the array’s contents (updatedItems[index] = ...), but not reassigning the updatedItems reference.
 
             const existingCartItemIndex = updatedItems.findIndex(
                 (cartItem) => cartItem.id === id
@@ -163,5 +164,9 @@ export default function CartContextProvider({ children }) {
 
     function shoppingCartReducer(state, action) { //This reducer function will be called by react after you dispatch a so called action.
      The arguements passed (i.e. type and payload) in the dispatched function will then be received as a value for the second parameter, action
+
+     You use shoppingCartDispatch to send an action
+     useReducer automatically calls shoppingCartReducer with the current state and the action
+     shoppingCartReducer processes the action and returns the updated state
 
  */
